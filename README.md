@@ -19,10 +19,12 @@ O usuário conversa com o agente que já está usando. O agente inspeciona o pro
 
 ## Uso pelo agente
 
+Requer Node.js 18 ou superior. Para desenvolvimento e publicação, o projeto usa Node.js 22.
+
 ```bash
-npx squad-system inspect --path /caminho/do/projeto
-npx squad-system init --path /caminho/do/projeto --spec /tmp/install-spec.json
-npx squad-system doctor --path /caminho/do/projeto
+npx @joleques/squad-system inspect --path /caminho/do/projeto
+npx @joleques/squad-system init --path /caminho/do/projeto --spec /tmp/install-spec.json
+npx @joleques/squad-system doctor --path /caminho/do/projeto
 ```
 
 O `install-spec.json` é preparado pelo agente após ler o diagnóstico, a documentação e o código relevante:
@@ -44,7 +46,7 @@ O `install-spec.json` é preparado pelo agente após ler o diagnóstico, a docum
 Para visualizar as mudanças:
 
 ```bash
-npx squad-system init --spec /tmp/install-spec.json --dry-run
+npx @joleques/squad-system init --spec /tmp/install-spec.json --dry-run
 ```
 
 ## Integração do AGENTS.md
@@ -54,17 +56,30 @@ Se o arquivo não existir, a squad cria o padrão. Se existir, o agente deve ana
 ## Diagnóstico e remoção
 
 ```bash
-npx squad-system doctor
-npx squad-system uninstall --dry-run
-npx squad-system uninstall
+npx @joleques/squad-system doctor
+npx @joleques/squad-system uninstall --dry-run
+npx @joleques/squad-system uninstall
 ```
 
 A remoção restaura arquivos anteriores quando possível. Arquivos gerenciados que tenham sido modificados pelo usuário são preservados.
 
+## Publicação
+
+Cada versão publicada no npm é imutável. Atualize o campo `version` seguindo versionamento semântico antes de uma nova publicação.
+
+```bash
+nvm use
+npm test
+npm pack --dry-run
+npm publish
+```
+
+O pacote é público sob o escopo `@joleques` e a publicação exige autenticação npm com 2FA.
+
 ## Fora do MVP
 
 - atualização automática;
-- publicação automática no npm;
+- publicação automática por CI;
 - Claude e Cursor;
 - Jira obrigatório;
 - squads de UX ou de orquestração da Fábrica.
