@@ -14,6 +14,8 @@ O usuário conversa com o agente que já está usando. O agente inspeciona o pro
 - instalação idempotente;
 - respostas curtas e orientadas à decisão;
 - ajustes da mesma entrega sem reiniciar a demanda;
+- contrato operacional completo em `AGENTS.md`;
+- papéis canônicos em `.agent/subagents/`, projetados para Kiro e Codex;
 - diagnóstico e desinstalação segura;
 - nenhuma leitura de `.env` ou secrets.
 

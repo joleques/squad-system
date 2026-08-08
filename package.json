@@ -1,6 +1,6 @@
 {
   "name": "@joleques/squad-system",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Instalador de Squad de Chão de Fábrica para Kiro e Codex",
   "license": "MIT",
   "author": "Jorge Leques",
@@ -29,6 +29,7 @@
   "files": [
     "bin",
     "src",
+    "templates/contracts",
     "templates/execucao-service/core/skills/triagem-demanda",
     "templates/execucao-service/core/skills/plano-implementacao",
     "templates/execucao-service/core/skills/quality",

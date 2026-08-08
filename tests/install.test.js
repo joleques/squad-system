@@ -129,6 +129,6 @@ test('CLI executa init e doctor de ponta a ponta', async () => {
   } finally {
     console.log = originalLog;
   }
-  assert.match(lines.join('\n'), /Squad 1.0.0 instalada/);
+  assert.match(lines.join('\n'), /Squad 1.0.1 instalada/);
   assert.match(lines.join('\n'), /Squad operacional/);
 });

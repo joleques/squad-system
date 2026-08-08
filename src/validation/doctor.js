@@ -4,6 +4,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 const { MANIFEST_FILE, ROLES, VERSION } = require('../core/constants');
 const { hash } = require('../core/files');
+const { REQUIRED_AGENTS_SECTIONS } = require('../installation/content');
 
 const REQUIRED_SKILLS = ['triagem-demanda', 'plano-implementacao', 'quality', 'arquitetura', 'arquitetura-revisor', 'software-principles', 'software-principles-revisor'];
 
@@ -14,6 +15,12 @@ function doctor(project) {
   checks.push(check('manifest', Boolean(manifest), manifest ? `versão ${manifest.version}` : 'ausente'));
   checks.push(check('node', Number(process.versions.node.split('.')[0]) >= 18, process.versions.node));
   checks.push(check('AGENTS.md', fs.existsSync(path.join(project, 'AGENTS.md'))));
+  const agentsPath = path.join(project, 'AGENTS.md');
+  if (fs.existsSync(agentsPath)) {
+    const agents = fs.readFileSync(agentsPath, 'utf8');
+    const missingSections = REQUIRED_AGENTS_SECTIONS.filter((section) => !agents.includes(section));
+    checks.push(check('agents-contract', missingSections.length === 0, missingSections.length ? `${missingSections.length} seção(ões) ausente(s)` : 'completo'));
+  }
   checks.push(check('project-context', fs.existsSync(path.join(project, '.agent/memory/project-context.md'))));
   checks.push(check('squad-config', fs.existsSync(path.join(project, '.agent/memory/squad-config.md'))));
   const configPath = path.join(project, '.agent/memory/squad-config.md');
@@ -28,6 +35,9 @@ function doctor(project) {
       return !fs.existsSync(absolute) || hash(fs.readFileSync(absolute)) !== file.hash;
     });
     checks.push(check('managed-files', drift.length === 0, drift.length ? `${drift.length} ausente(s) ou modificado(s)` : 'íntegros'));
+    for (const role of ROLES) {
+      checks.push(check(`canonical:${role}`, fs.existsSync(path.join(project, `.agent/subagents/${role}.md`))));
+    }
     for (const tool of manifest.tools || []) {
       for (const role of ROLES) {
         const extension = tool === 'kiro' ? 'json' : 'toml';

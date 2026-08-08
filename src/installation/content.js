@@ -1,9 +1,21 @@
 'use strict';
 
+const fs = require('node:fs');
+const path = require('node:path');
 const { BEGIN_MARKER, END_MARKER } = require('../core/constants');
 
+const REQUIRED_AGENTS_SECTIONS = [
+  '## Persona e Comunicação',
+  '## Classificação da Demanda',
+  '## Contexto Obrigatório',
+  '## Gate de Testes',
+  '## Fluxo Obrigatório',
+  '## Validação do Usuário e Continuidade',
+  '## Política de Escalonamento'
+];
+
 function managedAgentsBlock() {
-  return `${BEGIN_MARKER}\n## Squad de Chão de Fábrica\n\n- Ponto de entrada: \`service-lider\`.\n- Fluxo: analista → aprovação → dev ⇄ reviewer → validação do usuário.\n- Implementação exige plano aprovado e testes verdes antes e depois.\n- Ajuste dentro da mesma entrega reutiliza o ticket e volta diretamente para dev/reviewer.\n- A tarefa só termina com aceite explícito do usuário.\n- Respostas devem ser curtas, claras e começar pela decisão ou resultado.\n- Detalhes adicionais são fornecidos quando solicitados.\n- Nunca exponha segredos, tokens ou conteúdo de arquivos \`.env\`.\n${END_MARKER}`;
+  return fs.readFileSync(path.resolve(__dirname, '..', '..', 'templates', 'contracts', 'AGENTS.md'), 'utf8').trim();
 }
 
 function mergeAgents(existing, proposed) {
@@ -28,4 +40,4 @@ function ticketTemplate() {
   return `---\nid: DEMANDA-000\ntitulo: <título>\ntipo: <analise|bug|melhoria|evolucao|nova funcionalidade>\nstatus: nova\ndata: <YYYY-MM-DD>\n---\n\n# <título>\n\n## Objetivo\n\n## Contexto\n\n## Escopo\n\n## Definition of Done\n\n## Critérios de Aceite\n\n## Lacunas Bloqueantes\n\n## Registro de Revisão\n\n| Rodada | Resultado | Observação |\n|---|---|---|\n\n## Validação do Usuário\n\n| Ciclo | Feedback | Classificação | Resultado |\n|---|---|---|---|\n\nEstados: \`em-implementacao\`, \`em-revisao\`, \`aguardando-validacao\`, \`em-ajuste\`, \`concluida\`.\n`;
 }
 
-module.exports = { managedAgentsBlock, mergeAgents, projectContext, squadConfig, ticketTemplate };
+module.exports = { REQUIRED_AGENTS_SECTIONS, managedAgentsBlock, mergeAgents, projectContext, squadConfig, ticketTemplate };

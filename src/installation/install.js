@@ -8,6 +8,7 @@ const { ensureDir, hash, listFiles } = require('../core/files');
 const { VERSION, MANIFEST_FILE, TOOLS } = require('../core/constants');
 const kiro = require('../adapters/kiro');
 const codex = require('../adapters/codex');
+const { roles } = require('../adapters/roles');
 
 const SKILLS = ['triagem-demanda', 'plano-implementacao', 'quality', 'arquitetura', 'arquitetura-revisor', 'software-principles', 'software-principles-revisor'];
 
@@ -23,6 +24,7 @@ function install(project, rawSpec, options = {}) {
   stage('.agent/memory/project-context.md', projectContext(spec));
   stage('.agent/memory/squad-config.md', squadConfig(spec));
   stage('.agent/templates/_TEMPLATE-demanda.md', ticketTemplate());
+  for (const [name, role] of Object.entries(roles)) stage(`.agent/subagents/${name}.md`, `${role.instructions}\n`);
 
   for (const tool of tools) (tool === 'kiro' ? kiro : codex).emit(project, stage);
   stageSkills(tools, stage);

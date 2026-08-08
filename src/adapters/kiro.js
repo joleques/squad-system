@@ -15,7 +15,8 @@ function emit(project, stage) {
         'file://AGENTS.md',
         'file://.agent/memory/project-context.md',
         'file://.agent/memory/squad-config.md',
-        'file://.agent/templates/_TEMPLATE-demanda.md'
+        'file://.agent/templates/_TEMPLATE-demanda.md',
+        `file://.agent/subagents/${name}.md`
       ]
     };
     stage(path.join('.kiro', 'agents', `${name}.json`), `${JSON.stringify(agent, null, 2)}\n`);
