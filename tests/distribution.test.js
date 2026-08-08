@@ -34,3 +34,71 @@ test('licença, versão de Node e documentação pública estão presentes', () 
   assert.match(readme, /Node\.js 18/);
   assert.doesNotMatch(readme, /npx squad-system/);
 });
+
+function sectionBetween(document, startHeading, endHeading) {
+  const start = document.indexOf(startHeading);
+  const end = document.indexOf(endHeading, start + startHeading.length);
+
+  assert.notEqual(start, -1, `seção ausente: ${startHeading}`);
+  assert.notEqual(end, -1, `seção seguinte ausente: ${endHeading}`);
+  return document.slice(start, end);
+}
+
+function assertPracticalGuide(readme) {
+  const roles = sectionBetween(
+    readme,
+    '### Papéis, limites e entregas',
+    '### Workflow, gates e ações do usuário',
+  );
+  const roleContracts = {
+    'service-lider': [/orquestra/i, /não escreve código, ticket ou revisão/i, /próximo passo claro/i],
+    'service-analista': [/classifica a demanda/i, /não implementa código/i, /ticket pronto/i],
+    'service-dev': [/implementa somente demanda aprovada/i, /base previamente vermelha/i, /protegida por testes/i],
+    'service-reviewer': [/revisa aderência ao ticket/i, /não altera código/i, /`APROVADO` ou `REPROVADO`/],
+  };
+
+  for (const [role, cellContracts] of Object.entries(roleContracts)) {
+    const row = roles.split('\n').find((line) => line.includes(`\`${role}\``));
+    assert.ok(row, `papel ausente da tabela: ${role}`);
+    for (const contract of cellContracts) assert.match(row, contract);
+  }
+
+  const workflow = sectionBetween(
+    readme,
+    '### Workflow, gates e ações do usuário',
+    '### Exemplos de interação',
+  );
+  for (const workflowInvariant of [
+    /aprovação explícita/i,
+    /testes iniciais/i,
+    /aguardando-validacao/,
+    /aceite explícito/i,
+    /mesmo ticket.*retorna diretamente a dev e reviewer.*sem nova triagem, novo plano ou nova aprovação/i,
+    /objetivo independente exige \*\*nova demanda\*\*/i,
+  ]) {
+    assert.match(workflow, workflowInvariant);
+  }
+
+  assert.match(readme, /documentacao\//);
+  assert.match(readme, /pesquisa histórica/i);
+  assert.match(readme, /Exemplos? de interação/i);
+}
+
+test('README documenta a operação completa da Squad de Chão de Fábrica', () => {
+  const readme = fs.readFileSync(path.join(root, 'README.md'), 'utf8');
+  assertPracticalGuide(readme);
+});
+
+test('contrato documental detecta remoção de responsabilidades e regras de continuidade', () => {
+  const readme = fs.readFileSync(path.join(root, 'README.md'), 'utf8');
+  const mutations = [
+    readme.replace(/\| `service-lider` \|.*\n/, ''),
+    readme.replace('base previamente vermelha', 'falha anterior'),
+    readme.replace('retorna diretamente a dev e reviewer', 'retorna ao fluxo'),
+    readme.replace('objetivo independente exige **nova demanda**', 'objetivo independente será avaliado'),
+  ];
+
+  for (const mutation of mutations) {
+    assert.throws(() => assertPracticalGuide(mutation), assert.AssertionError);
+  }
+});
