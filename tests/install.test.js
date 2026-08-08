@@ -5,12 +5,15 @@ const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const os = require('node:os');
 const path = require('node:path');
-const { install, rejectSecrets } = require('../src/installation/install');
-const { uninstall } = require('../src/installation/uninstall');
-const { doctor } = require('../src/validation/doctor');
-const { inspectProject } = require('../src/detection/project');
-const { BEGIN_MARKER, END_MARKER } = require('../src/core/constants');
-const { run } = require('../src/cli');
+const { rejectSecrets } = require('../src/use_case/install-squad');
+const { createApplication } = require('../src/application/composition-root');
+const { BEGIN_MARKER, END_MARKER } = require('../src/shared/constants');
+const { run } = require('../src/application/cli');
+
+function install(project, input, options) { return createApplication(project).install(input, options); }
+function uninstall(project, options) { return createApplication(project).uninstall(options); }
+function doctor(project) { return createApplication(project).doctor(); }
+function inspectProject(project) { return createApplication(project).inspectProject(); }
 
 function temporaryProject() {
   return fs.mkdtempSync(path.join(os.tmpdir(), 'squad-system-'));

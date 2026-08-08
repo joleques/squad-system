@@ -5,8 +5,10 @@ const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const os = require('node:os');
 const path = require('node:path');
-const { install } = require('../src/installation/install');
-const { validateSpec } = require('../src/installation/spec');
+const { createApplication } = require('../src/application/composition-root');
+const { validateSpec } = require('../src/domain/installation-spec');
+
+function install(project, input, options) { return createApplication(project).install(input, options); }
 
 const roles = ['service-lider', 'service-analista', 'service-dev', 'service-reviewer'];
 

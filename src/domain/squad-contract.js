@@ -1,30 +1,17 @@
 'use strict';
 
-const fs = require('node:fs');
-const path = require('node:path');
-const { BEGIN_MARKER, END_MARKER } = require('../core/constants');
+const { BEGIN_MARKER, END_MARKER } = require('../shared/constants');
 
 const REQUIRED_AGENTS_SECTIONS = [
-  '## Persona e Comunicação',
-  '## Classificação da Demanda',
-  '## Contexto Obrigatório',
-  '## Gate de Testes',
-  '## Fluxo Obrigatório',
-  '## Validação do Usuário e Continuidade',
+  '## Persona e Comunicação', '## Classificação da Demanda', '## Contexto Obrigatório',
+  '## Gate de Testes', '## Fluxo Obrigatório', '## Validação do Usuário e Continuidade',
   '## Política de Escalonamento'
 ];
 
-function managedAgentsBlock() {
-  return fs.readFileSync(path.resolve(__dirname, '..', '..', 'templates', 'contracts', 'AGENTS.md'), 'utf8').trim();
-}
-
-function mergeAgents(existing, proposed) {
-  const block = proposed || managedAgentsBlock();
+function mergeAgents(existing, block) {
   const start = existing.indexOf(BEGIN_MARKER);
   const end = existing.indexOf(END_MARKER);
-  if (start >= 0 && end > start) {
-    return `${existing.slice(0, start)}${block}${existing.slice(end + END_MARKER.length)}`.trimEnd() + '\n';
-  }
+  if (start >= 0 && end > start) return `${existing.slice(0, start)}${block}${existing.slice(end + END_MARKER.length)}`.trimEnd() + '\n';
   return `${existing.trimEnd()}${existing.trim() ? '\n\n' : ''}${block}\n`;
 }
 
@@ -40,4 +27,4 @@ function ticketTemplate() {
   return `---\nid: DEMANDA-000\ntitulo: <título>\ntipo: <analise|bug|melhoria|evolucao|nova funcionalidade>\nstatus: nova\ndata: <YYYY-MM-DD>\n---\n\n# <título>\n\n## Objetivo\n\n## Contexto\n\n## Escopo\n\n## Definition of Done\n\n## Critérios de Aceite\n\n## Lacunas Bloqueantes\n\n## Registro de Revisão\n\n| Rodada | Resultado | Observação |\n|---|---|---|\n\n## Validação do Usuário\n\n| Ciclo | Feedback | Classificação | Resultado |\n|---|---|---|---|\n\nEstados: \`em-implementacao\`, \`em-revisao\`, \`aguardando-validacao\`, \`em-ajuste\`, \`concluida\`.\n`;
 }
 
-module.exports = { REQUIRED_AGENTS_SECTIONS, managedAgentsBlock, mergeAgents, projectContext, squadConfig, ticketTemplate };
+module.exports = { REQUIRED_AGENTS_SECTIONS, mergeAgents, projectContext, squadConfig, ticketTemplate };

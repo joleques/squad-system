@@ -2,8 +2,8 @@
 
 const test = require('node:test');
 const assert = require('node:assert/strict');
-const { validateSpec } = require('../src/installation/spec');
-const { parseArgs } = require('../src/cli');
+const { validateSpec } = require('../src/domain/installation-spec');
+const { parseArgs } = require('../src/application/arguments');
 
 const valid = {
   name: 'project', description: 'Descrição detalhada do projeto', purpose: 'Resolver uma necessidade real',

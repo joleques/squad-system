@@ -65,6 +65,21 @@ npx @joleques/squad-system uninstall
 
 A remoção restaura arquivos anteriores quando possível. Arquivos gerenciados que tenham sido modificados pelo usuário são preservados.
 
+## Arquitetura interna
+
+O código segue o padrão `arquitetura-proposta`:
+
+```text
+src/
+├── domain/       # contratos e regras puras da instalação
+├── use_case/     # instalação, diagnóstico, inspeção e remoção
+├── application/  # CLI, argumentos e composition root
+├── infra/        # filesystem, templates e emissores Kiro/Codex
+└── shared/       # constantes e hash compartilhados
+```
+
+As dependências apontam para dentro. Os casos de uso recebem filesystem, templates e emissores por injeção; somente o `composition-root` conhece simultaneamente casos de uso e infraestrutura. O teste `tests/architecture/dependency-rule.test.js` protege essa regra.
+
 ## Publicação
 
 Cada versão publicada no npm é imutável. Atualize o campo `version` seguindo versionamento semântico antes de uma nova publicação.
