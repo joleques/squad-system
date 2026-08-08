@@ -9,6 +9,7 @@ const { rejectSecrets } = require('../src/use_case/install-squad');
 const { createApplication } = require('../src/application/composition-root');
 const { BEGIN_MARKER, END_MARKER } = require('../src/shared/constants');
 const { run } = require('../src/application/cli');
+const { version } = require('../package.json');
 
 function install(project, input, options) { return createApplication(project).install(input, options); }
 function uninstall(project, options) { return createApplication(project).uninstall(options); }
@@ -132,6 +133,6 @@ test('CLI executa init e doctor de ponta a ponta', async () => {
   } finally {
     console.log = originalLog;
   }
-  assert.match(lines.join('\n'), /Squad 1.0.1 instalada/);
+  assert.match(lines.join('\n'), new RegExp(`Squad ${version.replaceAll('.', '\\.')} instalada`));
   assert.match(lines.join('\n'), /Squad operacional/);
 });
