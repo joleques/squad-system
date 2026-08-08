@@ -1,0 +1,26 @@
+{
+  "name": "squad-system",
+  "version": "1.0.0",
+  "description": "Instalador de Squad de Chao de Fabrica para Kiro e Codex",
+  "license": "MIT",
+  "bin": {
+    "squad-system": "bin/squad-system.js"
+  },
+  "files": [
+    "bin",
+    "src",
+    "templates/execucao-service/core/skills/triagem-demanda",
+    "templates/execucao-service/core/skills/plano-implementacao",
+    "templates/execucao-service/core/skills/quality",
+    "templates/execucao-service/core/skills/arquitetura",
+    "templates/execucao-service/core/skills/arquitetura-revisor",
+    "templates/execucao-service/core/skills/software-principles",
+    "templates/execucao-service/core/skills/software-principles-revisor"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "test": "node --test tests/*.test.js"
+  }
+}
