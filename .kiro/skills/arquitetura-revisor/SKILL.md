@@ -1,0 +1,215 @@
+---
+name: arquitetura-revisor
+description: Revisa código e aponta problemas de aderência ao padrão proposta-arq (Clean Architecture + Hexagonal + DDD)
+---
+
+# 🔍 Revisor de Arquitetura — proposta-arq
+
+Skill para análise de código e identificação de violações ao padrão de arquitetura integrada orientada a casos de uso.
+
+**Referência:** [proposta-arq](https://github.com/joleques/proposta-arq)
+
+---
+
+## 📋 Quando Usar
+
+Execute esta skill quando:
+- Precisar revisar um projeto existente para conformidade arquitetural
+- Antes de code review para identificar violações estruturais
+- Após refatorações para validar que o padrão foi mantido
+
+---
+
+## 🎯 Instruções de Execução
+
+### 1. Coletar Informações
+
+Pergunte ao usuário:
+1. **Diretório raiz do projeto** a ser analisado
+2. **Linguagem principal** (Go, Java, Python, etc.)
+
+Colete também o contexto minimo da entrega:
+3. **Tipo da demanda** (`bug` ou `implementacao`)
+4. **Arquivos alterados**
+5. **Testes executados e resultado**
+6. **Arquivos de teste criados, alterados ou removidos**
+
+Se houve implementacao sem evidencia minima de testes, sinalize isso no relatorio como risco de qualidade do fluxo.
+
+### 2. Análise de Estrutura de Pastas
+
+Verifique se o projeto segue a estrutura esperada:
+
+```
+/domain        → Entidades, Value Objects, Domain Services
+/use_case      → Casos de uso (orquestração de negócio)
+/application   → Pontos de entrada (controllers, rotas, consumidores)
+/infra         → Adapters (repositórios, HTTP clients, filas)
+/shared        → Componentes compartilhados
+```
+
+**Problemas a identificar:**
+- ❌ Pastas ausentes ou com nomes incorretos
+- ❌ Arquivos fora da camada apropriada
+- ❌ Estrutura plana sem separação de camadas
+
+### 3. Análise de Dependências
+
+Verifique o fluxo unidirecional de dependências:
+
+```
+infra → application → use_case → domain
+```
+
+**Regra fundamental:** Camadas internas NÃO devem depender de camadas externas.
+
+**Problemas a identificar:**
+- ❌ Domain importando pacotes de infra
+- ❌ Use Case importando diretamente implementações de infra (deve usar interfaces)
+- ❌ Application importando domain diretamente (deve passar pelo use_case)
+
+### 4. Análise por Camada
+
+#### 4.1 Camada Application
+**Propósito:** Porta de entrada do serviço (controllers, rotas, consumidores)
+
+**Verificar:**
+- ✅ Apenas recebe requisições e delega para use cases
+- ❌ NÃO deve conter lógica de negócio
+- ❌ NÃO deve acessar repositórios diretamente
+- ❌ NÃO deve manipular entidades de domínio complexas
+
+**Elementos esperados:**
+- Controllers/Handlers HTTP
+- Consumidores de filas (SQS, RabbitMQ)
+- Consumidores de streams (Kafka)
+- Presenters (formatação de resposta)
+
+#### 4.2 Camada Use Case
+**Propósito:** Orquestração das operações de negócio
+
+**Verificar:**
+- ✅ Cada use case tem responsabilidade única
+- ✅ Define DTOs de entrada (InputUseCase) e saída (OutputUseCase)
+- ✅ Coordena entidades e adapters via interfaces
+- ❌ NÃO deve conter regras de negócio específicas (delegar ao domain)
+- ❌ NÃO deve implementar persistência diretamente
+
+**Elementos esperados:**
+- Use Cases com método Execute/Run
+- DTOs de entrada/saída
+- Converters (DTO ↔ Entity)
+- Interfaces de repositório (ports)
+
+#### 4.3 Camada Domain
+**Propósito:** Coração da lógica de negócio
+
+**Verificar:**
+- ✅ Contém todas as regras de negócio
+- ✅ Entidades com comportamento (não apenas dados)
+- ✅ Independente de tecnologia/frameworks
+- ❌ NÃO deve importar pacotes de infra
+- ❌ NÃO deve ter anotações de frameworks (ORM, serialização)
+- ❌ NÃO deve depender de bibliotecas externas específicas
+
+**Elementos esperados:**
+- Entities (com identidade)
+- Value Objects (imutáveis, sem identidade)
+- Aggregates (raiz de consistência)
+- Domain Services (lógica que não pertence a uma entidade)
+- Domain Events
+- Repository Interfaces (ports)
+
+#### 4.4 Camada Infrastructure
+**Propósito:** Implementação de adapters e comunicação externa
+
+**Verificar:**
+- ✅ Implementa interfaces definidas no domain/use_case
+- ✅ Lida com detalhes técnicos (SQL, HTTP, serialização)
+- ❌ NÃO deve conter regras de negócio
+- ❌ NÃO deve expor detalhes de implementação para outras camadas
+
+**Elementos esperados:**
+- Repository implementations
+- HTTP/gRPC clients
+- Queue publishers
+- Database adapters
+- External service adapters
+
+#### 4.5 Componente Shared
+**Propósito:** Recursos compartilhados entre camadas
+
+**Verificar:**
+- ✅ Contém código genuinamente reutilizável
+- ✅ Independente de contexto de negócio específico
+- ❌ NÃO deve criar acoplamento entre contextos distintos
+
+**Elementos esperados:**
+- Utilitários genéricos
+- Tipos comuns (erros, constantes)
+- Clientes compartilhados (autenticação, logging)
+- Configurações
+
+---
+
+## 📝 Formato do Relatório
+
+Gere um relatório Markdown com:
+
+```markdown
+# Relatório de Revisão de Arquitetura
+
+**Projeto:** [nome/caminho]
+**Data:** [data]
+**Linguagem:** [linguagem]
+
+## Resumo
+
+| Categoria | Status | Problemas |
+|-----------|--------|-----------|
+| Estrutura de Pastas | ✅/⚠️/❌ | X |
+| Fluxo de Dependências | ✅/⚠️/❌ | X |
+| Camada Application | ✅/⚠️/❌ | X |
+| Camada Use Case | ✅/⚠️/❌ | X |
+| Camada Domain | ✅/⚠️/❌ | X |
+| Camada Infrastructure | ✅/⚠️/❌ | X |
+| Componente Shared | ✅/⚠️/❌ | X |
+
+## Problemas Encontrados
+
+### [Categoria]
+
+#### [Problema 1]
+- **Arquivo:** `caminho/arquivo.go`
+- **Linha:** X
+- **Descrição:** [descrição do problema]
+- **Sugestão:** [como corrigir]
+
+## Recomendações Gerais
+
+[Lista de melhorias sugeridas]
+
+## Verificações de Fluxo
+
+- **Tipo da demanda:** [tipo]
+- **Testes executados:** [sim/não + evidência]
+- **Alterações em testes:** [arquivos]
+- **Risco de processo:** [nenhum / atenção / crítico]
+```
+
+---
+
+## ⚠️ Observações
+
+- Esta análise é baseada em inspeção de código e estrutura
+- Alguns problemas podem requerer análise de contexto adicional
+- Priorize problemas que violam regras fundamentais (dependências)
+- Se a solução arquitetural vier sem proteção automatizada ou com remoção suspeita de testes, registre isso mesmo que a estrutura de camadas esteja aceitável.
+
+---
+
+## 📚 Referências
+
+- [proposta-arq - Definição da Arquitetura](https://github.com/joleques/proposta-arq/blob/main/8-definicao_arq.md)
+- [Clean Architecture - Robert C. Martin](https://www.amazon.com.br/Arquitetura-Limpa-Artes%C3%A3o-Estrutura-Software/dp/8550804606)
+- [Implementing DDD - Vaughn Vernon](https://www.amazon.com/Implementing-Domain-Driven-Design-Vaughn-Vernon/dp/0321834577)

@@ -10,7 +10,7 @@ const packageJson = JSON.parse(fs.readFileSync(path.join(root, 'package.json'), 
 
 test('metadados identificam o pacote público e sua origem', () => {
   assert.equal(packageJson.name, '@joleques/squad-system');
-  assert.equal(packageJson.version, '1.0.1');
+  assert.match(packageJson.version, /^\d+\.\d+\.\d+$/);
   assert.equal(packageJson.publishConfig?.access, 'public');
   assert.equal(packageJson.repository?.url, 'git+https://github.com/joleques/squad-system.git');
   assert.equal(packageJson.homepage, 'https://github.com/joleques/squad-system#readme');

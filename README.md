@@ -82,16 +82,26 @@ As dependências apontam para dentro. Os casos de uso recebem filesystem, templa
 
 ## Publicação
 
-Cada versão publicada no npm é imutável. Atualize o campo `version` seguindo versionamento semântico antes de uma nova publicação.
+Cada versão publicada no npm é imutável. A publicação é feita pelo GitHub Actions quando uma tag estritamente SemVer (`vX.Y.Z`) corresponde à versão do `package.json`.
+
+Antes do primeiro release, configure um Trusted Publisher no pacote `@joleques/squad-system` no npm:
+
+- provider: GitHub Actions;
+- organization or user: `joleques`;
+- repository: `squad-system`;
+- workflow filename: `publish.yml`;
+- allowed action: `npm publish`.
+
+O fluxo usa OIDC e não requer `NPM_TOKEN`. Para preparar e enviar um release, a árvore Git deve estar limpa e o remote `origin` configurado:
 
 ```bash
 nvm use
-npm test
-npm pack --dry-run
-npm publish
+make test
+make pack
+make release-patch # ou release-minor / release-major
 ```
 
-O pacote é público sob o escopo `@joleques` e a publicação exige autenticação npm com 2FA.
+O comando de release executa os gates locais, usa `npm version` para criar commit e tag e envia ambos atomicamente. O workflow repete instalação determinística, testes e validação do pacote antes de publicar.
 
 ## Fora do MVP
 

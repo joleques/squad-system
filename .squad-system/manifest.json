@@ -1,0 +1,220 @@
+{
+  "schemaVersion": 1,
+  "version": "1.0.1",
+  "installedAt": "2026-08-08T22:39:12.686Z",
+  "tools": [
+    "kiro",
+    "codex"
+  ],
+  "project": "@joleques/squad-system",
+  "files": [
+    {
+      "path": "AGENTS.md",
+      "hash": "d5dc6f6f8ffc346c25962b67611c695224164144f6d13a17786c7300ec9a3418",
+      "created": true
+    },
+    {
+      "path": ".agent/memory/project-context.md",
+      "hash": "8eeaea26dd60140597090395fd6c9f56aaea28946e3de781c60f37b27fc7b66e",
+      "created": false
+    },
+    {
+      "path": ".agent/memory/squad-config.md",
+      "hash": "5fdf363bb0e317414870556c46d1f7e423652d14501e6e79d9b566c2ba6a390b",
+      "created": true
+    },
+    {
+      "path": ".agent/templates/_TEMPLATE-demanda.md",
+      "hash": "2f14ef77255638460944a275aae12b3ed3d029f8b477a9dd19a88e83900f7f7f",
+      "created": true
+    },
+    {
+      "path": ".agent/subagents/service-lider.md",
+      "hash": "af912f03d3c1513d6b15652d84b197739398193799865064333739ec1dc2b9c3",
+      "created": true
+    },
+    {
+      "path": ".agent/subagents/service-analista.md",
+      "hash": "a2c0fc9884b04b5a56d9651a4ec398ddd71fc822928ffecab84a165286c1649c",
+      "created": true
+    },
+    {
+      "path": ".agent/subagents/service-dev.md",
+      "hash": "b864cbecd5cb375e011dea4c32619067c19b21c36bf723b1e360e5d64a111274",
+      "created": true
+    },
+    {
+      "path": ".agent/subagents/service-reviewer.md",
+      "hash": "8f60e2e400fc54d27726d0943c49da4631afc27c440b13b85dd397aeccc5de13",
+      "created": true
+    },
+    {
+      "path": ".kiro/agents/service-lider.json",
+      "hash": "df303d860b3f163dce644870fef3d7482b69dd4997dc770de0b2245851b9e90f",
+      "created": true
+    },
+    {
+      "path": ".kiro/agents/service-analista.json",
+      "hash": "b6c68891f73121e77e64ec4bc0e84a17e612ecd8d6725a98ff2ad7a367e1a7ce",
+      "created": true
+    },
+    {
+      "path": ".kiro/agents/service-dev.json",
+      "hash": "dfc96cd6f683c1d58218700477079ab8f3b646114a7d45e23e7de94c81b7dbdf",
+      "created": true
+    },
+    {
+      "path": ".kiro/agents/service-reviewer.json",
+      "hash": "1b49babf8eb7223ac75a661840ef48e90c9d8a2afb4413393067844fff01b2df",
+      "created": true
+    },
+    {
+      "path": ".kiro/hooks/check-tests.sh",
+      "hash": "3a390e41264ef7332ef0380343a4ef6792bcd2132bc6eb41901448d966fb1743",
+      "created": true
+    },
+    {
+      "path": ".codex/agents/service-lider.toml",
+      "hash": "4dfe42a2ac8634465dd9c43cef71a527ac92abd1ea65c746ea9afa164e051915",
+      "created": true
+    },
+    {
+      "path": ".codex/agents/service-analista.toml",
+      "hash": "17395c373880778f6098843aec0870ca79a0d414867281706f7cf0de5d0da288",
+      "created": true
+    },
+    {
+      "path": ".codex/agents/service-dev.toml",
+      "hash": "4905422518d251ab477d7e6f9a9aa978037008d8d9731e8bc07b0f2a2f68f203",
+      "created": true
+    },
+    {
+      "path": ".codex/agents/service-reviewer.toml",
+      "hash": "48cb4cfc56ae54e850aab090aa81765228632bfb2262c8b90aa45e01294cca19",
+      "created": true
+    },
+    {
+      "path": ".kiro/skills/triagem-demanda/SKILL.md",
+      "hash": "77e5abf161ab97836e73c3e0f81b8824e5c072e164f6b8dea7884337dd6dbbef",
+      "created": true
+    },
+    {
+      "path": ".codex/skills/triagem-demanda/SKILL.md",
+      "hash": "77e5abf161ab97836e73c3e0f81b8824e5c072e164f6b8dea7884337dd6dbbef",
+      "created": true
+    },
+    {
+      "path": ".kiro/skills/plano-implementacao/SKILL.md",
+      "hash": "e64537e27c07e106ccc7178538d718254bef172d88411bff0f33bf7e4185969f",
+      "created": true
+    },
+    {
+      "path": ".codex/skills/plano-implementacao/SKILL.md",
+      "hash": "e64537e27c07e106ccc7178538d718254bef172d88411bff0f33bf7e4185969f",
+      "created": true
+    },
+    {
+      "path": ".kiro/skills/quality/README.md",
+      "hash": "e3cf4edfd88ba5f1090f521355acf26979cccb58e5474413fbd767b936db326f",
+      "created": true
+    },
+    {
+      "path": ".codex/skills/quality/README.md",
+      "hash": "e3cf4edfd88ba5f1090f521355acf26979cccb58e5474413fbd767b936db326f",
+      "created": true
+    },
+    {
+      "path": ".kiro/skills/quality/SKILL.md",
+      "hash": "f47552431ec8c7b50f1ab0b24b81682150f1013a6b77952536d502b5a8975b18",
+      "created": true
+    },
+    {
+      "path": ".codex/skills/quality/SKILL.md",
+      "hash": "f47552431ec8c7b50f1ab0b24b81682150f1013a6b77952536d502b5a8975b18",
+      "created": true
+    },
+    {
+      "path": ".kiro/skills/arquitetura/README.md",
+      "hash": "f218b97f23743cb2d9edc5e7f2610a4783ef317d7d2f016691322e2355981997",
+      "created": true
+    },
+    {
+      "path": ".codex/skills/arquitetura/README.md",
+      "hash": "f218b97f23743cb2d9edc5e7f2610a4783ef317d7d2f016691322e2355981997",
+      "created": true
+    },
+    {
+      "path": ".kiro/skills/arquitetura/SKILL.md",
+      "hash": "c193cd1dd8a77bef5a0b7ae3030f0e204038189c5e6bd043ba1df2046d9ca76c",
+      "created": true
+    },
+    {
+      "path": ".codex/skills/arquitetura/SKILL.md",
+      "hash": "c193cd1dd8a77bef5a0b7ae3030f0e204038189c5e6bd043ba1df2046d9ca76c",
+      "created": true
+    },
+    {
+      "path": ".kiro/skills/arquitetura-revisor/README.md",
+      "hash": "77e6fd39b7348f67d5921bb0ef6f3c89c37a56361656358c3102314736342cf5",
+      "created": true
+    },
+    {
+      "path": ".codex/skills/arquitetura-revisor/README.md",
+      "hash": "77e6fd39b7348f67d5921bb0ef6f3c89c37a56361656358c3102314736342cf5",
+      "created": true
+    },
+    {
+      "path": ".kiro/skills/arquitetura-revisor/SKILL.md",
+      "hash": "c76f08e7e0f5cda4d501647e22e1c4e9d3511147742993ec0e3f8b8609d02fc2",
+      "created": true
+    },
+    {
+      "path": ".codex/skills/arquitetura-revisor/SKILL.md",
+      "hash": "c76f08e7e0f5cda4d501647e22e1c4e9d3511147742993ec0e3f8b8609d02fc2",
+      "created": true
+    },
+    {
+      "path": ".kiro/skills/software-principles/README.md",
+      "hash": "b6b102a70be3efca86bbed699cbc8f09130e546c7a2bda64efe05d8651735051",
+      "created": true
+    },
+    {
+      "path": ".codex/skills/software-principles/README.md",
+      "hash": "b6b102a70be3efca86bbed699cbc8f09130e546c7a2bda64efe05d8651735051",
+      "created": true
+    },
+    {
+      "path": ".kiro/skills/software-principles/SKILL.md",
+      "hash": "9059aaf09a2de0cc4ede1584211a945eba0fb47184a41552778de4cc23ba0119",
+      "created": true
+    },
+    {
+      "path": ".codex/skills/software-principles/SKILL.md",
+      "hash": "9059aaf09a2de0cc4ede1584211a945eba0fb47184a41552778de4cc23ba0119",
+      "created": true
+    },
+    {
+      "path": ".kiro/skills/software-principles-revisor/README.md",
+      "hash": "e7e41f18a6b82d15fca2f0f7bfa03984a1a71e202cf096b6cc9ab8f0966c3fa7",
+      "created": true
+    },
+    {
+      "path": ".codex/skills/software-principles-revisor/README.md",
+      "hash": "e7e41f18a6b82d15fca2f0f7bfa03984a1a71e202cf096b6cc9ab8f0966c3fa7",
+      "created": true
+    },
+    {
+      "path": ".kiro/skills/software-principles-revisor/SKILL.md",
+      "hash": "a87d746e04b2684f1851b5951f5a7bb3cb73957ecb64db45cb58afabb100a771",
+      "created": true
+    },
+    {
+      "path": ".codex/skills/software-principles-revisor/SKILL.md",
+      "hash": "a87d746e04b2684f1851b5951f5a7bb3cb73957ecb64db45cb58afabb100a771",
+      "created": true
+    }
+  ],
+  "backups": {
+    ".agent/memory/project-context.md": "IyBDb250ZXh0byBkbyBQcm9qZXRvIOKAlCBTcXVhZCBTeXN0ZW0KCiMjIFByb2R1dG8KCkNMSSBkaXN0cmlidcOtZGEgcGVsbyBucG0gcGFyYSBpbnN0YWxhciB1bWEgU3F1YWQgZGUgQ2jDo28gZGUgRsOhYnJpY2EgZW0gcHJvamV0b3MgZXhpc3RlbnRlcy4gQSBpbnN0YWxhw6fDo28gw6kgbWVkaWFkYSBwZWxvIGFnZW50ZSBkZSBJQSBxdWUgbyB1c3XDoXJpbyBqw6EgdXRpbGl6YSBlIHN1cG9ydGEgS2lybywgQ29kZXggb3UgYW1ib3MuCgojIyBEZWNpc8O1ZXMgZG8gTVZQCgotIHF1YXRybyBwYXDDqWlzIGNhbsO0bmljb3M6IGzDrWRlciwgYW5hbGlzdGEsIGRldiBlIHJldmlld2VyOwotIGNvbnRleHRvIGRldGFsaGFkbyBvYnJpZ2F0w7NyaW8gbm8gc3BlYyBkZSBpbnN0YWxhw6fDo287Ci0gYXJxdWl0ZXR1cmEgZG8gcHJvamV0by1hbHZvIG9wY2lvbmFsLCB1c2FuZG8gYGFycXVpdGV0dXJhLXByb3Bvc3RhYCBjb21vIHBhZHLDo287Ci0gaW50ZWdyYcOnw6NvIHByZXNlcnZhbmRvIHJlZ3JhcyBwcmVleGlzdGVudGVzIGRlIGBBR0VOVFMubWRgOwotIGNvbXVuaWNhw6fDo28gb2JqZXRpdmEgZSBjb250aW51aWRhZGUgZGUgYWp1c3RlcyBwb250dWFpcyBubyBtZXNtbyB0aWNrZXQ7Ci0gaW5zdGFsYcOnw6NvIGlkZW1wb3RlbnRlLCBkaWFnbsOzc3RpY28gZSBkZXNpbnN0YWxhw6fDo28gc2VndXJhOwotIG5lbmh1bWEgbGVpdHVyYSBvdSBlbXBhY290YW1lbnRvIGRlIHNlZ3JlZG9zLgoKIyMgQXJxdWl0ZXR1cmEgdmlnZW50ZQoKTyBwcsOzcHJpbyBTcXVhZCBTeXN0ZW0gYWRvdGEgYGRvbWFpbmAsIGB1c2VfY2FzZWAsIGBhcHBsaWNhdGlvbmAsIGBpbmZyYWAgZSBgc2hhcmVkYC4KCi0gYGRvbWFpbmA6IHZhbGlkYcOnw6NvIGRvIHNwZWMsIGNvbnRyYXRvIGRhIHNxdWFkIGUgbWFuaWZlc3RvOwotIGB1c2VfY2FzZWA6IG9wZXJhw6fDtWVzIGRlIGluc3RhbGFyLCBpbnNwZWNpb25hciwgZGlhZ25vc3RpY2FyIGUgZGVzaW5zdGFsYXI7Ci0gYGFwcGxpY2F0aW9uYDogZW50cmFkYSBkYSBDTEkgZSBjb21wb3Npw6fDo28gZGFzIGRlcGVuZMOqbmNpYXM7Ci0gYGluZnJhYDogYWNlc3NvIGFvIGZpbGVzeXN0ZW0sIHRlbXBsYXRlcyBlIHByb2plw6fDtWVzIEtpcm8vQ29kZXg7Ci0gYHNoYXJlZGA6IHV0aWxpZGFkZXMgaW5kZXBlbmRlbnRlcyBkZSBmbHV4by4KCkNhc29zIGRlIHVzbyBuw6NvIGltcG9ydGFtIGluZnJhZXN0cnV0dXJhLiBPIGBhcHBsaWNhdGlvbi9jb21wb3NpdGlvbi1yb290LmpzYCBpbmpldGEgb3MgYWRhcHRlcnMgY29uY3JldG9zLiBVbSB0ZXN0ZSBhcnF1aXRldHVyYWwgaW1wZWRlIGRlcGVuZMOqbmNpYXMgZGUgYGRvbWFpbmAgcGFyYSBjYW1hZGFzIGV4dGVybmFzIGUgZGUgYHVzZV9jYXNlYCBwYXJhIGBpbmZyYWAgb3UgYGFwcGxpY2F0aW9uYC4KCiMjIEV0YXBhIGF0dWFsCgpNVlAgZnVuY2lvbmFsIG5hIHZlcnPDo28gZGUgZGVzZW52b2x2aW1lbnRvIGAxLjAuMWAsIGNvbSBhIGFycXVpdGV0dXJhIGludGVybmEgcGFkcm9uaXphZGEuIEEgYXV0b21hw6fDo28gZGUgcHVibGljYcOnw6NvIEdpdC9ucG0gcGVybWFuZWNlIHJlZ2lzdHJhZGEgcGFyYSBldm9sdcOnw6NvIHBvc3RlcmlvciBlbSBgZG9jdW1lbnRhY2FvL3RpY2tldC9wdWJsaWNhY2FvLW5wbS9BVVQtMDAxLm1kYC4K"
+  }
+}
