@@ -35,6 +35,20 @@ test('licença, versão de Node e documentação pública estão presentes', () 
   assert.doesNotMatch(readme, /npx squad-system/);
 });
 
+test('README exibe a assinatura visual oficial com alternativa acessível', () => {
+  const logoPath = 'documentacao/identidade-visual/logo-horizontal-color.svg';
+  const readme = fs.readFileSync(path.join(root, 'README.md'), 'utf8');
+  const introduction = readme.slice(0, readme.indexOf('## MVP'));
+
+  assert.ok(fs.existsSync(path.join(root, logoPath)), 'ativo oficial ausente');
+  assert.match(introduction, /^# Squad System$/m);
+  const logoMarkup = introduction.match(
+    new RegExp(`<img src="${logoPath}" alt="[^"]*Squad System[^"]*" width="(\\d+)">`),
+  );
+  assert.ok(logoMarkup, 'assinatura oficial ausente da introdução');
+  assert.ok(Number(logoMarkup[1]) >= 200 && Number(logoMarkup[1]) <= 600, 'largura inadequada');
+});
+
 function sectionBetween(document, startHeading, endHeading) {
   const start = document.indexOf(startHeading);
   const end = document.indexOf(endHeading, start + startHeading.length);

@@ -1,5 +1,7 @@
 # Squad System
 
+<img src="documentacao/identidade-visual/logo-horizontal-color.svg" alt="Logotipo colorido do Squad System" width="420">
+
 Instala uma Squad de Chão de Fábrica em projetos existentes para **Kiro**, **Codex** ou ambos.
 
 O usuário conversa com o agente que já está usando. O agente inspeciona o projeto, integra semanticamente o `AGENTS.md` e executa a instalação. A CLI cuida das operações determinísticas: escrita transacional, propriedade, diagnóstico e desinstalação.
