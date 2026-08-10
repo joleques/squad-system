@@ -7,7 +7,7 @@ description: Regras para TDD, gate de testes antes e depois da implementacao, av
 
 ## 🎯 Cobertura Minima
 
-- Todo novo artefato exige teste correspondente, conforme a `regra_cobertura` de `documentacao/squad-config.md`.
+- Todo novo artefato exige teste correspondente, conforme a `regra_cobertura` de `.agent/memory/squad-config.md`.
 - `bug` e `implementacao` exigem testes.
 - Em `bug`, o teste deve reproduzir o problema e impedir recorrencia.
 - Foco principal: testes unitarios. Integracao entra em pontos criticos quando necessario.
@@ -19,11 +19,11 @@ Estas regras se aplicam quando a demanda envolve implementacao: `bug` ou `implem
 Para `analise`, nao ha obrigacao de rodar testes antes ou depois, porque nao ha mudanca de implementacao.
 
 O comando de teste, a convencao de localizacao e a regra de cobertura sao os definidos
-em `documentacao/squad-config.md` (este ecossistema trabalha com multiplas linguagens).
+em `.agent/memory/squad-config.md` (este ecossistema trabalha com multiplas linguagens).
 
 ### Antes de implementar
 
-- Execute o `comando_teste` definido em `documentacao/squad-config.md`.
+- Execute o `comando_teste` definido em `.agent/memory/squad-config.md`.
 - Se a suite falhar antes da mudanca, interrompa o trabalho.
 - Analise a falha e discuta com o usuario antes de seguir.
 
@@ -35,7 +35,7 @@ em `documentacao/squad-config.md` (este ecossistema trabalha com multiplas lingu
 
 ### Ao final da implementacao
 
-- Execute o `comando_teste_completo` de `documentacao/squad-config.md` e reporte `PASS` ou `FAIL`.
+- Execute o `comando_teste_completo` de `.agent/memory/squad-config.md` e reporte `PASS` ou `FAIL`.
 - Avalie a qualidade dos testes criados ou alterados.
 - Verifique se os testes cobrem o comportamento pedido, nao apenas a linha feliz cosmetica.
 - Registre no ticket somente as evidencias vermelho/verde e os comandos relevantes; no handoff, referencie o ticket sem retransmitir logs completos.
@@ -58,7 +58,7 @@ em `documentacao/squad-config.md` (este ecossistema trabalha com multiplas lingu
 
 1. Código limpo e testado.
 2. Sem nomes genéricos.
-3. Logs estruturados em inglês conforme o padrão da stack (ver `documentacao/squad-config.md`).
+3. Logs estruturados em inglês conforme o padrão da stack (ver `.agent/memory/squad-config.md`).
 4. Testes executados antes e depois da implementacao.
 5. Qualidade dos testes analisada e reportada.
 6. Documentação sugerida/atualizada.

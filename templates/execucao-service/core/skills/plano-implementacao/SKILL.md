@@ -45,7 +45,7 @@ Criar um plano claro, verificavel e aprovavel pelo usuario antes de qualquer imp
 
 Depois da aprovacao do plano e antes de editar arquivos:
 
-1. rodar o comando de teste definido em `documentacao/squad-config.md`;
+1. rodar o comando de teste definido em `.agent/memory/squad-config.md`;
 2. se houver falha pre-existente, interromper a implementacao;
 3. analisar a falha;
 4. discutir com o usuario antes de seguir.

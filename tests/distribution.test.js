@@ -8,6 +8,18 @@ const path = require('node:path');
 const root = path.resolve(__dirname, '..');
 const packageJson = JSON.parse(fs.readFileSync(path.join(root, 'package.json'), 'utf8'));
 
+function filesWithin(relativePath) {
+  const absolutePath = path.join(root, relativePath);
+  if (fs.statSync(absolutePath).isFile()) return [absolutePath];
+  return fs.readdirSync(absolutePath, { withFileTypes: true }).flatMap((entry) =>
+    filesWithin(path.join(relativePath, entry.name))
+  );
+}
+
+function distributedFiles() {
+  return packageJson.files.flatMap(filesWithin);
+}
+
 test('metadados identificam o pacote público e sua origem', () => {
   assert.equal(packageJson.name, '@joleques/squad-system');
   assert.match(packageJson.version, /^\d+\.\d+\.\d+$/);
@@ -24,6 +36,27 @@ test('distribuição protege testes, runtime e executável', () => {
   assert.equal(packageJson.bin?.['squad-system'], 'bin/squad-system.js');
   assert.ok(packageJson.files.includes('bin'));
   assert.ok(packageJson.keywords.includes('ai-agents'));
+});
+
+test('skills distribuídas usam o caminho canônico do squad-config', () => {
+  for (const file of distributedFiles()) {
+    const content = fs.readFileSync(file, 'utf8');
+    assert.doesNotMatch(content, /documentacao\/squad-config\.md/, path.relative(root, file));
+  }
+
+  for (const skill of ['plano-implementacao', 'quality']) {
+    const skillPath = path.join(
+      root,
+      'templates/execucao-service/core/skills',
+      skill,
+      'SKILL.md',
+    );
+    assert.match(
+      fs.readFileSync(skillPath, 'utf8'),
+      /\.agent\/memory\/squad-config\.md/,
+      skill,
+    );
+  }
 });
 
 test('licença, versão de Node e documentação pública estão presentes', () => {

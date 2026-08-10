@@ -49,6 +49,24 @@ test('instala Kiro e Codex com os quatro agentes e contexto detalhado', () => {
   assert.equal(doctor(project).ok, true);
 });
 
+test('projeta skills de Kiro e Codex com o caminho canônico do squad-config', () => {
+  const project = temporaryProject();
+  install(project, spec());
+
+  for (const tool of ['kiro', 'codex']) {
+    for (const skill of ['plano-implementacao', 'quality']) {
+      const content = fs.readFileSync(
+        path.join(project, `.${tool}/skills/${skill}/SKILL.md`),
+        'utf8',
+      );
+      assert.match(content, /\.agent\/memory\/squad-config\.md/, `${tool}/${skill}`);
+      assert.doesNotMatch(content, /documentacao\/squad-config\.md/, `${tool}/${skill}`);
+    }
+  }
+
+  assert.equal(doctor(project).ok, true);
+});
+
 test('preserva AGENTS.md existente e integra bloco gerenciado uma única vez', () => {
   const project = temporaryProject();
   fs.writeFileSync(path.join(project, 'AGENTS.md'), '# Regras locais\n\n- Java 21 obrigatório.\n');
