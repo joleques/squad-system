@@ -54,6 +54,12 @@ As fontes canônicas desse comportamento são o contrato em `AGENTS.md` e as def
 
 Em resumo, as ações esperadas do usuário ficam concentradas nos gates de informação faltante, aprovação do plano e validação final. Os gates de testes e revisão são executados pela squad, com escalonamento apenas quando existir bloqueio ou escolha relevante.
 
+<p align="center">
+  <img src="documentacao/diagramas/jornada-agentes-squad-system.png" alt="Diagrama da jornada de trabalho dos agentes da Squad System" width="900">
+</p>
+
+<p align="center"><sub><a href="documentacao/diagramas/jornada-agentes-squad-system.html">Baixe o HTML e abra-o localmente</a> para usar temas e opções de exportação.</sub></p>
+
 ### Exemplos de interação
 
 **Melhoria com implementação**

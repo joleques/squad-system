@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "diagram_type": "sequence",
+  "meta": {
+    "title": "Como a Squad System conduz uma demanda",
+    "subtitle": "Quem participa, o que acontece e quando o usuário precisa agir",
+    "output": "documentacao/diagramas/jornada-agentes-squad-system.html",
+    "viewBox": [600, 980]
+  },
+  "participants": [
+    { "id": "usuario", "type": "external", "label": "Usuário", "sublabel": "decide e valida" },
+    { "id": "lider", "type": "frontend", "label": "Líder", "sublabel": "fala com usuário" },
+    { "id": "analista", "type": "backend", "label": "Analista", "sublabel": "define demanda" },
+    { "id": "dev", "type": "messagebus", "label": "Dev", "sublabel": "testa e implementa" },
+    { "id": "reviewer", "type": "security", "label": "Reviewer", "sublabel": "revisa qualidade" }
+  ],
+  "segments": [
+    { "from": 150, "to": 330, "label": "1 / ENTENDER A DEMANDA" },
+    { "from": 345, "to": 480, "label": "2 / APROVAR O PLANO" },
+    { "from": 495, "to": 765, "label": "3 / IMPLEMENTAR E REVISAR" },
+    { "from": 780, "to": 930, "label": "4 / VALIDAR A ENTREGA" }
+  ],
+  "messages": [
+    { "from": "usuario", "to": "lider", "y": 205, "label": "Descreve a demanda", "variant": "emphasis" },
+    { "from": "lider", "to": "analista", "y": 255, "label": "Solicita análise", "variant": "default" },
+    { "from": "analista", "to": "lider", "y": 305, "label": "Demanda pronta", "variant": "return" },
+
+    { "from": "lider", "to": "usuario", "y": 395, "label": "Apresenta o plano", "variant": "security" },
+    { "from": "usuario", "to": "lider", "y": 450, "label": "Aprova o plano", "variant": "security" },
+
+    { "from": "lider", "to": "dev", "y": 545, "label": "Autoriza a execução", "variant": "emphasis" },
+    { "from": "dev", "to": "lider", "y": 595, "label": "Testes iniciais verdes", "variant": "return" },
+    { "from": "lider", "to": "dev", "y": 645, "label": "Implementar com TDD", "variant": "emphasis" },
+    { "from": "dev", "to": "reviewer", "y": 695, "label": "Envia para revisão", "variant": "emphasis" },
+    { "from": "reviewer", "to": "lider", "y": 745, "label": "APROVADO técnico", "variant": "return" },
+
+    { "from": "lider", "to": "usuario", "y": 830, "label": "Solicita validação", "variant": "emphasis" },
+    { "from": "usuario", "to": "lider", "y": 890, "label": "Aceite explicito", "variant": "security" }
+  ],
+  "activations": [
+    { "participant": "lider", "from": 195, "to": 320, "type": "frontend" },
+    { "participant": "lider", "from": 385, "to": 470, "type": "frontend" },
+    { "participant": "lider", "from": 535, "to": 755, "type": "frontend" },
+    { "participant": "lider", "from": 820, "to": 900, "type": "frontend" },
+    { "participant": "analista", "from": 225, "to": 315, "type": "backend" },
+    { "participant": "dev", "from": 535, "to": 705, "type": "messagebus" },
+    { "participant": "reviewer", "from": 685, "to": 755, "type": "security" }
+  ],
+  "cards": [
+    {
+      "dot": "rose",
+      "title": "Quando algo bloqueia",
+      "items": [
+        "Lacuna importante: o Líder pede somente a decisão necessária",
+        "Testes iniciais falham: a implementação não começa",
+        "Revisao tecnica reprova: retorna ao Dev, no máximo cinco vezes"
+      ]
+    },
+    {
+      "dot": "cyan",
+      "title": "Se o usuário pedir um ajuste",
+      "items": [
+        "Ajuste pontual permanece no mesmo ticket",
+        "Retorna direto para Dev e Reviewer",
+        "Não exige nova análise nem Aprovar plano novamente"
+      ]
+    },
+    {
+      "dot": "emerald",
+      "title": "Quando abrir outro trabalho",
+      "items": [
+        "Nova demanda somente para um objetivo independente",
+        "Regressão causada pela entrega atual continua no mesmo ticket",
+        "O usuário conversa apenas com o Líder durante todo o processo"
+      ]
+    }
+  ]
+}
