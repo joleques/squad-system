@@ -1,6 +1,6 @@
 # Squad System
 
-<img src="documentacao/identidade-visual/logo-horizontal-color.svg" alt="Logotipo colorido do Squad System" width="420">
+<img src="documentacao/identidade-visual/logo-horizontal-color.svg" alt="Logotipo colorido do Squad System" width="420" style="display: block; margin: 0 auto;">
 
 Instala uma Squad de Chão de Fábrica em projetos existentes para **Kiro**, **Codex** ou ambos.
 

@@ -1,0 +1,197 @@
+{
+  "svg_checks": [
+    {
+      "file": "logo-horizontal-color.svg",
+      "viewBox": "0 0 680 200",
+      "fills": [
+        "#14B8A6",
+        "#4F46E5",
+        "#7C4DFF",
+        "#FF6B6B"
+      ],
+      "has_image": false,
+      "has_filter": false,
+      "has_gradient": false,
+      "has_mask": false,
+      "has_text": false,
+      "path_count": 6
+    },
+    {
+      "file": "logo-horizontal-dark.svg",
+      "viewBox": "0 0 680 200",
+      "fills": [
+        "#14B8A6",
+        "#4F46E5",
+        "#7C4DFF",
+        "#FF6B6B"
+      ],
+      "has_image": false,
+      "has_filter": false,
+      "has_gradient": false,
+      "has_mask": false,
+      "has_text": false,
+      "path_count": 6
+    },
+    {
+      "file": "logo-horizontal-monochrome.svg",
+      "viewBox": "0 0 680 200",
+      "fills": [
+        "#0F172A"
+      ],
+      "has_image": false,
+      "has_filter": false,
+      "has_gradient": false,
+      "has_mask": false,
+      "has_text": false,
+      "path_count": 6
+    },
+    {
+      "file": "logo-horizontal-color-editable.svg",
+      "viewBox": "0 0 680 200",
+      "fills": [
+        "#0F172A",
+        "#14B8A6",
+        "#4F46E5",
+        "#7C4DFF",
+        "#FF6B6B"
+      ],
+      "has_image": false,
+      "has_filter": false,
+      "has_gradient": false,
+      "has_mask": false,
+      "has_text": true,
+      "path_count": 5
+    },
+    {
+      "file": "logo-horizontal-dark-editable.svg",
+      "viewBox": "0 0 680 200",
+      "fills": [
+        "#14B8A6",
+        "#4F46E5",
+        "#7C4DFF",
+        "#FF6B6B",
+        "#FFFFFF"
+      ],
+      "has_image": false,
+      "has_filter": false,
+      "has_gradient": false,
+      "has_mask": false,
+      "has_text": true,
+      "path_count": 5
+    },
+    {
+      "file": "logo-horizontal-monochrome-editable.svg",
+      "viewBox": "0 0 680 200",
+      "fills": [
+        "#0F172A"
+      ],
+      "has_image": false,
+      "has_filter": false,
+      "has_gradient": false,
+      "has_mask": false,
+      "has_text": true,
+      "path_count": 5
+    },
+    {
+      "file": "symbol-color.svg",
+      "viewBox": "0 0 200 200",
+      "fills": [
+        "#14B8A6",
+        "#4F46E5",
+        "#7C4DFF",
+        "#FF6B6B"
+      ],
+      "has_image": false,
+      "has_filter": false,
+      "has_gradient": false,
+      "has_mask": false,
+      "has_text": false,
+      "path_count": 5
+    },
+    {
+      "file": "symbol-monochrome.svg",
+      "viewBox": "0 0 200 200",
+      "fills": [
+        "#0F172A"
+      ],
+      "has_image": false,
+      "has_filter": false,
+      "has_gradient": false,
+      "has_mask": false,
+      "has_text": false,
+      "path_count": 5
+    },
+    {
+      "file": "favicon.svg",
+      "viewBox": "0 0 16 16",
+      "fills": [
+        "#14B8A6",
+        "#4F46E5",
+        "#7C4DFF",
+        "#FF6B6B"
+      ],
+      "has_image": false,
+      "has_filter": false,
+      "has_gradient": false,
+      "has_mask": false,
+      "has_text": false,
+      "path_count": 5
+    }
+  ],
+  "bounds": {
+    "logo-horizontal-color.svg": {
+      "x": 25.093,
+      "y": 25.093,
+      "w": 598.193,
+      "h": 149.814,
+      "right": 623.286,
+      "bottom": 174.90699999999998,
+      "right_margin": 56.714000000000055
+    },
+    "logo-horizontal-color-editable.svg": {
+      "x": 25.093,
+      "y": 25.093,
+      "w": 598.193,
+      "h": 149.814,
+      "right": 623.286,
+      "bottom": 174.90699999999998,
+      "right_margin": 56.714000000000055
+    },
+    "logo-horizontal-dark.svg": {
+      "x": 25.093,
+      "y": 25.093,
+      "w": 598.193,
+      "h": 149.814,
+      "right": 623.286,
+      "bottom": 174.90699999999998,
+      "right_margin": 56.714000000000055
+    },
+    "logo-horizontal-dark-editable.svg": {
+      "x": 25.093,
+      "y": 25.093,
+      "w": 598.193,
+      "h": 149.814,
+      "right": 623.286,
+      "bottom": 174.90699999999998,
+      "right_margin": 56.714000000000055
+    },
+    "logo-horizontal-monochrome.svg": {
+      "x": 25.093,
+      "y": 25.093,
+      "w": 598.193,
+      "h": 149.814,
+      "right": 623.286,
+      "bottom": 174.90699999999998,
+      "right_margin": 56.714000000000055
+    },
+    "logo-horizontal-monochrome-editable.svg": {
+      "x": 25.093,
+      "y": 25.093,
+      "w": 598.193,
+      "h": 149.814,
+      "right": 623.286,
+      "bottom": 174.90699999999998,
+      "right_margin": 56.714000000000055
+    }
+  }
+}
