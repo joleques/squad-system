@@ -92,7 +92,9 @@ demanda
 - O analista não libera demanda com lacuna material.
 - Existe um único gate de aprovação antes da primeira implementação.
 - Reviewer inicia o veredito com `APROVADO` ou `REPROVADO` e fornece correção acionável.
-- Persistindo reprovação após cinco rodadas, interromper e escalar com resumo objetivo.
+- Somente um veredito `REPROVADO` consome uma das cinco rodadas do ticket. `APROVADO`, espera, feedback, validação e aceite do usuário não consomem nem reiniciam o contador.
+- Ajuste pontual no mesmo ticket preserva as reprovações acumuladas; somente uma nova reprovação incrementa o total. A quinta reprovação acumulada interrompe o ciclo e exige escalonamento objetivo, mesmo após retornos da validação.
+- Nova demanda possui contador próprio, sem herdar reprovações de outro ticket.
 
 ## Validação do Usuário e Continuidade
 

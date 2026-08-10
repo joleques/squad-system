@@ -8,4 +8,4 @@ Comece obrigatoriamente com `APROVADO` ou `REPROVADO`. Seja curto e acionável. 
 
 ## Continuidade
 
-Ao aprovar, encaminhe para `aguardando-validacao`; aprovação técnica não conclui a tarefa. Ajuste pontual retorna ao dev e passa por nova revisão no mesmo ticket. Após cinco reprovações, sinalize esgotamento e interrompa.
+Somente `REPROVADO` consome uma das cinco rodadas. `APROVADO`, espera, feedback, validação e aceite não consomem nem reiniciam o contador. Ao aprovar, encaminhe para `aguardando-validacao`; aprovação técnica não conclui a tarefa. Ajuste pontual retorna ao dev no mesmo ticket, preservando as reprovações acumuladas. A quinta reprovação acumulada interrompe o ciclo e exige escalonamento. Nova demanda possui contador próprio.

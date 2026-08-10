@@ -22,8 +22,10 @@ data: <YYYY-MM-DD>
 
 ## Registro de Revisão
 
-| Rodada | Resultado | Observação |
-|---|---|---|
+Somente `REPROVADO` incrementa o total de reprovações acumuladas.
+
+| Revisão | Resultado | Reprovações acumuladas | Observação |
+|---|---|---|---|
 
 ## Validação do Usuário
 

@@ -109,6 +109,10 @@ function assertPracticalGuide(readme) {
     /aceite explícito/i,
     /mesmo ticket.*retorna diretamente a dev e reviewer.*sem nova triagem, novo plano ou nova aprovação/i,
     /objetivo independente exige \*\*nova demanda\*\*/i,
+    /somente.*`REPROVADO`.*consome.*cinco/is,
+    /`APROVADO`.*espera.*feedback.*validação.*aceite.*não consomem (?:nem|e não) reiniciam/is,
+    /ajuste pontual.*reprovações.*acumulad/is,
+    /quinta reprovação.*acumulad.*escal/is,
   ]) {
     assert.match(workflow, workflowInvariant);
   }

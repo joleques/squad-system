@@ -132,6 +132,40 @@ test('ajuste pontual continua no mesmo ticket sem reiniciar o pipeline', () => {
   assert.match(agents, /aceite explícito.*concluída/is);
 });
 
+function assertReviewRejectionLimit(document) {
+  assert.match(document, /somente.*`REPROVADO`.*consome.*cinco/is);
+  assert.match(document, /`APROVADO`.*espera.*feedback.*validação.*aceite.*não consomem (?:nem|e não) reiniciam/is);
+  assert.match(document, /ajuste pontual.*mesmo ticket.*reprovações.*acumulad/is);
+  assert.match(document, /quinta reprovação.*acumulad.*interromp.*escal/is);
+  assert.match(document, /nova demanda.*contador próprio/is);
+}
+
+test('contrato instalado limita cinco reprovações acumuladas por ticket', () => {
+  const target = project();
+  install(target, spec());
+  assertReviewRejectionLimit(fs.readFileSync(path.join(target, 'AGENTS.md'), 'utf8'));
+});
+
+test('papéis e projeções preservam a contagem de reprovações', () => {
+  const target = project();
+  install(target, spec());
+  for (const role of ['service-lider', 'service-reviewer']) {
+    const canonical = fs.readFileSync(path.join(target, `.agent/subagents/${role}.md`), 'utf8');
+    assertReviewRejectionLimit(canonical);
+    assertReviewRejectionLimit(JSON.parse(fs.readFileSync(path.join(target, `.kiro/agents/${role}.json`), 'utf8')).prompt);
+    const codex = fs.readFileSync(path.join(target, `.codex/agents/${role}.toml`), 'utf8');
+    assertReviewRejectionLimit(JSON.parse(codex.match(/^developer_instructions = (.+)$/m)[1]));
+  }
+});
+
+test('template instalado distingue sequência da revisão e reprovações consumidas', () => {
+  const target = project();
+  install(target, spec());
+  const template = fs.readFileSync(path.join(target, '.agent/templates/_TEMPLATE-demanda.md'), 'utf8');
+  assert.match(template, /\| Revisão \| Resultado \| Reprovações acumuladas \| Observação \|/);
+  assert.match(template, /somente `REPROVADO` incrementa/i);
+});
+
 test('fontes canônicas dos quatro papéis são instaladas e projetadas nos adaptadores', () => {
   const target = project();
   install(target, spec());

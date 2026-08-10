@@ -24,7 +24,7 @@ function squadConfig(spec) {
 }
 
 function ticketTemplate() {
-  return `---\nid: DEMANDA-000\ntitulo: <título>\ntipo: <analise|bug|melhoria|evolucao|nova funcionalidade>\nstatus: nova\ndata: <YYYY-MM-DD>\n---\n\n# <título>\n\n## Objetivo\n\n## Contexto\n\n## Escopo\n\n## Definition of Done\n\n## Critérios de Aceite\n\n## Lacunas Bloqueantes\n\n## Registro de Revisão\n\n| Rodada | Resultado | Observação |\n|---|---|---|\n\n## Validação do Usuário\n\n| Ciclo | Feedback | Classificação | Resultado |\n|---|---|---|---|\n\nEstados: \`em-implementacao\`, \`em-revisao\`, \`aguardando-validacao\`, \`em-ajuste\`, \`concluida\`.\n`;
+  return `---\nid: DEMANDA-000\ntitulo: <título>\ntipo: <analise|bug|melhoria|evolucao|nova funcionalidade>\nstatus: nova\ndata: <YYYY-MM-DD>\n---\n\n# <título>\n\n## Objetivo\n\n## Contexto\n\n## Escopo\n\n## Definition of Done\n\n## Critérios de Aceite\n\n## Lacunas Bloqueantes\n\n## Registro de Revisão\n\nSomente \`REPROVADO\` incrementa o total de reprovações acumuladas.\n\n| Revisão | Resultado | Reprovações acumuladas | Observação |\n|---|---|---|---|\n\n## Validação do Usuário\n\n| Ciclo | Feedback | Classificação | Resultado |\n|---|---|---|---|\n\nEstados: \`em-implementacao\`, \`em-revisao\`, \`aguardando-validacao\`, \`em-ajuste\`, \`concluida\`.\n`;
 }
 
 module.exports = { REQUIRED_AGENTS_SECTIONS, mergeAgents, projectContext, squadConfig, ticketTemplate };
