@@ -52,9 +52,4 @@ Depois da aprovacao do plano e antes de editar arquivos:
 
 ## Resultado esperado
 
-Ao final desta skill, o chat deve ter:
-
-- plano aprovado explicitamente pelo usuario;
-- escopo de mudanca delimitado;
-- testes previstos para a entrega;
-- autorizacao para iniciar a implementacao.
+Persista o plano no ticket. O líder apresenta ao usuário somente a síntese necessária à decisão e aguarda aprovação explícita. Após a decisão, encaminhe caminho do ticket, status e próximo passo, sem retransmitir o plano integral.

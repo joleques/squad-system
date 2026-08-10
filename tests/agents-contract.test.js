@@ -56,6 +56,71 @@ test('contrato exige respostas objetivas e detalhes somente sob demanda', () => 
   assert.match(agents, /não narrar.*ferramentas/i);
 });
 
+test('contrato define handoff mínimo por referência aos artefatos persistidos', () => {
+  const target = project();
+  install(target, spec());
+  const agents = fs.readFileSync(path.join(target, 'AGENTS.md'), 'utf8');
+
+  assert.match(agents, /handoff mínimo/i);
+  assert.match(agents, /identificador e caminho do ticket/i);
+  assert.match(agents, /status.*evidências indispensáveis.*lacunas.*próximo passo/is);
+  assert.match(agents, /consultar diretamente.*não retransmitir.*conteúdo já persistido/is);
+});
+
+test('cada papel comunica somente os dados necessários ao destinatário', () => {
+  const target = project();
+  install(target, spec());
+  const expected = {
+    'service-lider': /encaminhe.*caminho do ticket.*status.*próximo passo/is,
+    'service-analista': /caminho do ticket.*prontidão.*lacunas.*próximo passo/is,
+    'service-dev': /status.*evidências.*arquivos alterados.*bloqueios.*próximo passo/is,
+    'service-reviewer': /status.*veredito.*correção acionável.*próximo passo/is,
+  };
+
+  for (const [role, handoff] of Object.entries(expected)) {
+    const canonical = fs.readFileSync(path.join(target, `.agent/subagents/${role}.md`), 'utf8');
+    assert.match(canonical, handoff, `handoff incompleto: ${role}`);
+    assert.match(canonical, /consult[ae].*ticket.*diretamente|não repita.*ticket/is);
+  }
+});
+
+function assertProtectedGates(agents) {
+  assert.match(agents, /plano e aprovação explícita/i);
+  assert.match(agents, /trabalhar com TDD/i);
+  assert.match(agents, /Reviewer inicia o veredito com `APROVADO` ou `REPROVADO`/i);
+  assert.match(agents, /^- Somente após aceite explícito do usuário a demanda fica `concluída`\.$/m);
+}
+
+test('contrato detecta mutações nos quatro gates protegidos', () => {
+  const target = project();
+  install(target, spec());
+  const agents = fs.readFileSync(path.join(target, 'AGENTS.md'), 'utf8');
+  assertProtectedGates(agents);
+
+  for (const mutation of [
+    agents.replaceAll('plano e aprovação explícita', 'plano'),
+    agents.replaceAll('Trabalhar com TDD', 'Implementar a mudança'),
+    agents.replaceAll('Reviewer inicia o veredito com `APROVADO` ou `REPROVADO`', 'Reviewer registra a revisão'),
+    agents.replaceAll('Somente após aceite explícito do usuário', 'Após revisão técnica'),
+  ]) {
+    assert.throws(() => assertProtectedGates(mutation), assert.AssertionError);
+  }
+});
+
+test('skills instaladas persistem decisões e retornam referências concisas', () => {
+  const target = project();
+  install(target, spec());
+  const triage = fs.readFileSync(path.join(target, '.codex/skills/triagem-demanda/SKILL.md'), 'utf8');
+  const plan = fs.readFileSync(path.join(target, '.codex/skills/plano-implementacao/SKILL.md'), 'utf8');
+  const quality = fs.readFileSync(path.join(target, '.codex/skills/quality/SKILL.md'), 'utf8');
+
+  assert.match(triage, /caminho do ticket.*prontidão.*lacunas.*próximo passo/is);
+  assert.match(plan, /persista o plano no ticket/i);
+  assert.match(plan, /aguarda aprovação explícita/i);
+  assert.match(quality, /evidencias vermelho\/verde/i);
+  assert.match(quality, /sem retransmitir logs completos/i);
+});
+
 test('ajuste pontual continua no mesmo ticket sem reiniciar o pipeline', () => {
   const target = project();
   install(target, spec());

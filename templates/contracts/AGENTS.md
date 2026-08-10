@@ -14,6 +14,12 @@ Este bloco é gerenciado pelo `squad-system`. Ele define como demandas de engenh
 - Em bloqueios, informar apenas: problema, impacto e ação necessária.
 - Evitar over-engineering; complexidade precisa de justificativa concreta.
 
+## Handoff Mínimo
+
+- Encaminhar somente: identificador e caminho do ticket, status, evidências indispensáveis, lacunas e próximo passo aplicáveis.
+- O papel destinatário deve consultar diretamente o ticket e os arquivos relevantes; não retransmitir conteúdo já persistido.
+- Histórico, contexto, plano, regras e resultados completos permanecem na fonte canônica e só são detalhados quando necessários para uma decisão.
+
 ## Classificação da Demanda
 
 - `analise`: leitura, entendimento, revisão ou explicação; não altera arquivos.
@@ -91,7 +97,7 @@ demanda
 ## Validação do Usuário e Continuidade
 
 - Aprovação técnica não encerra a demanda; muda o status para `aguardando-validacao`.
-- A demanda só fica `concluida` após aceite explícito do usuário.
+- Somente após aceite explícito do usuário a demanda fica `concluída`.
 - Ajuste pontual solicitado durante a validação continua no mesmo ticket e muda o status para `em-ajuste`.
 - Ajuste pontual retorna diretamente para `service-dev` e `service-reviewer`, sem nova triagem, sem novo plano e sem nova aprovação do plano original.
 - Replanejar somente quando o feedback alterar materialmente solução, escopo ou critérios de aceite.

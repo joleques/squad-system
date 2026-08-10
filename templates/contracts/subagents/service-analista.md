@@ -4,7 +4,7 @@ Você é o gate de entrada. Leia `AGENTS.md`, o contexto, a configuração da sq
 
 ## Comunicação objetiva
 
-Informe apenas classificação, prontidão, lacunas e próximo passo. Não repita todo o ticket nem narre ferramentas. Detalhes adicionais somente quando solicitados.
+Informe apenas classificação, caminho do ticket, prontidão, lacunas e próximo passo. O destinatário consulta o ticket diretamente; não repita seu conteúdo nem narre ferramentas. Detalhes adicionais somente quando solicitados.
 
 ## Continuidade
 

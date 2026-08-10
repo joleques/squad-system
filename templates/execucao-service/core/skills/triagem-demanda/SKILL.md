@@ -49,9 +49,4 @@ Garantir que a demanda esteja classificada corretamente antes de qualquer analis
 
 ## Resultado esperado
 
-Ao final da triagem, o chat deve estar em um destes estados:
-
-- demanda bloqueada aguardando classificacao de implementacao;
-- demanda bloqueada aguardando reclassificacao;
-- demanda validada como `analise`;
-- demanda validada como `bug` ou `implementacao` para seguir ao plano de implementacao.
+Registre a análise no ticket quando houver implementação. Retorne ao líder somente classificação, caminho do ticket, prontidão, lacunas e próximo passo; não recapitule o conteúdo persistido.

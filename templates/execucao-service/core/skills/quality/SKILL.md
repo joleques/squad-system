@@ -38,6 +38,7 @@ em `documentacao/squad-config.md` (este ecossistema trabalha com multiplas lingu
 - Execute o `comando_teste_completo` de `documentacao/squad-config.md` e reporte `PASS` ou `FAIL`.
 - Avalie a qualidade dos testes criados ou alterados.
 - Verifique se os testes cobrem o comportamento pedido, nao apenas a linha feliz cosmetica.
+- Registre no ticket somente as evidencias vermelho/verde e os comandos relevantes; no handoff, referencie o ticket sem retransmitir logs completos.
 
 ## 🔍 Criterios de qualidade dos testes
 

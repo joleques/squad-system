@@ -34,4 +34,4 @@ Padrão arquitetura-proposta: domain, use_case, application, infra e shared; dep
 
 ## Estágio atual
 
-MVP funcional com publicação versionada automatizada por tags SemVer, GitHub Actions e npm Trusted Publishing/OIDC. Releases patch, minor e major possuem gates locais e push atômico de commit e tag.
+MVP funcional com publicação versionada automatizada por tags SemVer, GitHub Actions e npm Trusted Publishing/OIDC. Releases patch, minor e major possuem gates locais e push atômico de commit e tag. O contrato operacional usa handoffs mínimos por referência ao ticket, preservando aprovação explícita, TDD, revisão técnica e validação final do usuário.
